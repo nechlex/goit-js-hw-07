@@ -27,24 +27,13 @@ const images = [
 
 const gallery = document.querySelector(".gallery");
 
-images.forEach(({ url, alt }) => {
-  const listItem = document.createElement("li");
-  listItem.classList.add("gallery-item");
-  const img = document.createElement("img");
-  img.src = url;
-  img.alt = alt;
-  img.classList.add("gallery-img");
-  listItem.append(img);
-  gallery.append(listItem);
-});
+const galleryItems = images.map(
+  ({ url, alt }) => `<li><img src="${url}" alt="${alt}" width="300"></li>`
+);
+gallery.insertAdjacentHTML("beforeend", galleryItems.join(""));
   
 gallery.style.display = "flex";
 gallery.style.gap = "10px";
 gallery.style.listStyle = "none";
-
-const imagesInGallery = document.querySelectorAll(".gallery-img");
-imagesInGallery.forEach((img) => {
-  img.style.width = "200px";
-  img.style.borderRadius = "10px";
-  img.style.height = "140px";
-});
+gallery.style.padding = "0";
+gallery.style.margin = "0";
